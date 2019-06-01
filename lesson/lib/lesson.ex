@@ -28,19 +28,19 @@ defmodule Lesson do
   end
 
   def execute_sequentially(n) do
-    IO.puts "=== 開始: #{n}回rand_sleepを繰り返す ==="
+    IO.puts "=== 開始: #{n}回sleep_randを繰り返す ==="
     result = Enum.map(1..n, fn(_) -> sleep_rand(1000) end)
-    IO.puts "=== 終了: #{n}回rand_sleepを繰り返す ==="
+    IO.puts "=== 終了: #{n}回sleep_randを繰り返す ==="
     result
   end
 
   def execute_concurrently(n) do
-    IO.puts "=== 開始: #{n}回rand_sleepを繰り返す ==="
+    IO.puts "=== 開始: #{n}回sleep_randを繰り返す ==="
     result = 1..n
     |> Enum.map(fn(_) -> Task.async(Lesson, :sleep_rand, [1000]) end)
     |> Enum.map(&Task.await/1)
 
-    IO.puts "=== 終了: #{n}回rand_sleepを繰り返す ==="
+    IO.puts "=== 終了: #{n}回sleep_randを繰り返す ==="
     result
   end
 end
